@@ -1,0 +1,53 @@
+﻿<Window x:Class="ClonePad.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="ClonePad" Height="450" Width="800"
+        Closing="Window_Closing" WindowStyle="SingleBorderWindow" Icon="/coffee.jpg">
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" Executed="Open_Click"/>
+        <CommandBinding Command="Save" Executed="Save_Click"/>
+        <CommandBinding Command="New" Executed="New_Click"/>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="O" Modifiers="Control" Command="Open"/>
+        <KeyBinding Key="S" Modifiers="Control" Command="Save"/>
+        <KeyBinding Key="N" Modifiers="Control" Command="New"/>
+    </Window.InputBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" x:Name="TopMenu" Grid.ColumnSpan="2">
+            <MenuItem Header="File">
+                <MenuItem Header="New" Command="New"/>
+                <MenuItem Header="Open" Command="Open"/>
+                <MenuItem Header="Save" Command="Save"/>
+                <MenuItem Header="Quit" Click="Quit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Options">
+                <MenuItem x:Name="WordWrap"  Header="WordWrap" IsCheckable="True" Click="WordWrap_Click" IsChecked="False"/>
+                <MenuItem x:Name="FontSizeSelectors" Header="FontSize">
+                    <MenuItem Header="8 px"  IsCheckable="True" IsChecked="False" Click="MenuItem_Click" Tag="8"/>
+                    <MenuItem Header="9 px"  IsCheckable="True" IsChecked="False" Click="MenuItem_Click" Tag="9"/>
+                    <MenuItem Header="10 px" IsCheckable="True" IsChecked="False" Click="MenuItem_Click" Tag="10"/>
+                    <MenuItem Header="11 px" IsCheckable="True" IsChecked="False" Click="MenuItem_Click" Tag="11"/>
+                    <MenuItem Header="12 px" IsCheckable="True" IsChecked="True"  Click="MenuItem_Click" Tag="12"/>
+                    <MenuItem Header="14 px" IsCheckable="True" IsChecked="False" Click="MenuItem_Click" Tag="14"/>
+                    <MenuItem Header="16 px" IsCheckable="True" IsChecked="False" Click="MenuItem_Click" Tag="16"/>
+                    <MenuItem Header="18 px" IsCheckable="True" IsChecked="False" Click="MenuItem_Click" Tag="18"/>
+                    <MenuItem Header="20 px" IsCheckable="True" IsChecked="False" Click="MenuItem_Click" Tag="20"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About" Click="About_Screen"/>
+            </MenuItem>
+        </Menu>
+
+        <TextBox x:Name="Editor" Grid.Row="1" AcceptsReturn="True" AcceptsTab="True" TextWrapping="NoWrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" TextChanged="Editor_TextChanged" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Window>
